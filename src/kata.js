@@ -9,11 +9,7 @@ const add = (numbers) =>{
   }
   const values = getValues(numbers);
   validateValues(values);
-  for (const index in values) {
-    if (Object.prototype.hasOwnProperty.call(values, index)) {
-      sum += values[index];
-    }
-  }
+  sum = values.reduce((prev, curr)=>prev+curr);
   return sum;
 };
 
