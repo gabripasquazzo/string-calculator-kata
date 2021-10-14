@@ -1,14 +1,17 @@
 'use strict';
 
 const add = (numbers) =>{
+  let sum = 0;
   if ( numbers === undefined || numbers === '' ) {
-    return 0;
+    return sum;
   }
-  if ( numbers.indexOf(',') > 0 ) {
-    const values = numbers.split(',');
-    return parseInt(values[0])+parseInt(values[1]);
+  const values = numbers.split(',');
+  for (const index in values) {
+    if (Object.prototype.hasOwnProperty.call(values, index)) {
+      sum += parseInt(values[index]);
+    }
   }
-  return parseInt(numbers);
+  return sum;
 };
 
 exports.add = add;
