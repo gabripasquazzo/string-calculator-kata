@@ -5,7 +5,7 @@ const add = (numbers) =>{
   if ( numbers === undefined || numbers === '' ) {
     return sum;
   }
-  const values = numbers.split(',');
+  const values = numbers.split(/[,|\n]/);
   for (const index in values) {
     if (Object.prototype.hasOwnProperty.call(values, index)) {
       sum += parseInt(values[index]);
