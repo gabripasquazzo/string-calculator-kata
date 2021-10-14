@@ -1,4 +1,5 @@
 'use strict';
+const {test, expect} = require('@jest/globals');
 const kata = require('../src/kata');
 
 test('empty input', () => {
@@ -35,4 +36,28 @@ test('three inputs, newline and comma: "3\n2,1"', () => {
 
 test('four inputs, newlines and commas: "5\n6\n7,8"', () => {
   expect(kata.add('5\n6\n7,8')).toBe(26);
+});
+
+test('user defined delimiter: semicolon "//;\n1;2"', () => {
+  expect(kata.add('//;\n1;2')).toBe(3);
+});
+
+test('user defined delimiter mixed with newline:  "//;\n1;2\n4"', () => {
+  expect(kata.add('//;\n1;2\n4')).toBe(7);
+});
+
+test('delimiter of string "//;\nxyz" is ;', ()=>{
+  expect(kata.__getDelimiter('//;\nxyz')).toBe(';');
+});
+
+test('delimiter of string "xyz" is default comma', ()=>{
+  expect(kata.__getDelimiter('xyz')).toBe(',');
+});
+
+test('values of string "//;\n1;2;3" are 1,2,3', ()=>{
+  expect(kata.__getValues('//;\n1;2;3')).toStrictEqual(['1', '2', '3']);
+});
+
+test('values of string "1,2,3" are 1,2,3', ()=>{
+  expect(kata.__getValues('1,2,3')).toStrictEqual(['1', '2', '3']);
 });

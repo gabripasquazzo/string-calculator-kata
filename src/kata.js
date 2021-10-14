@@ -5,7 +5,7 @@ const add = (numbers) =>{
   if ( numbers === undefined || numbers === '' ) {
     return sum;
   }
-  const values = numbers.split(/[,|\n]/);
+  const values = getValues(numbers);
   for (const index in values) {
     if (Object.prototype.hasOwnProperty.call(values, index)) {
       sum += parseInt(values[index]);
@@ -14,4 +14,36 @@ const add = (numbers) =>{
   return sum;
 };
 
+const getValues = (inputString) => {
+  const delimiter = getDelimiter(inputString);
+  const delimitingRegExp = new RegExp('['+delimiter+'|\n]');
+  const values = inputString.split(delimitingRegExp);
+  return clean(values);
+};
+
+const getDelimiter = (inputString) =>{
+  let delimiter = ',';
+  if (inputString !== undefined && inputString.startsWith('//')) {
+    const parts = inputString.split('\n');
+    const dirtyDelimiter = parts[0];
+    delimiter = dirtyDelimiter.replace(/^\/\/+/, '');
+  }
+  return delimiter;
+};
+
+const clean = (values) => {
+  const cleanedValues = [];
+  for (const index in values) {
+    if (Object.prototype.hasOwnProperty.call(values, index)) {
+      if (values[index] !== '' && values[index] !== '//') {
+        cleanedValues.push(values[index]);
+      }
+    }
+  }
+  return cleanedValues;
+};
+
+
 exports.add = add;
+exports.__getDelimiter = getDelimiter;
+exports.__getValues = getValues;
