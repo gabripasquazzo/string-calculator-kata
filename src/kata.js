@@ -1,5 +1,7 @@
 'use strict';
 
+const MAX_VALUE = 1000;
+
 const add = (numbers) =>{
   let sum = 0;
   if ( numbers === undefined || numbers === '' ) {
@@ -19,9 +21,10 @@ const add = (numbers) =>{
 const getValues = (inputString) => {
   const delimiter = getDelimiter(inputString);
   const delimitingRegExp = new RegExp('['+delimiter+'|\n]');
-  const values = inputString.split(delimitingRegExp);
-  const cleaned = values.filter((v) => v !== '' && v !=='//');
-  return cleaned.map((value) => parseInt(value));
+  let values = inputString.split(delimitingRegExp);
+  values = values.filter((v) => v !== '' && v !=='//');
+  values = values.map((value) => parseInt(value));
+  return values.filter((number) => number <= MAX_VALUE);
 };
 
 const validateValues = (values) => {

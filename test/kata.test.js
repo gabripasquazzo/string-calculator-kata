@@ -69,3 +69,7 @@ test('negatives not allowed', ()=>{
 test('negatives not allowed, multiple negatives', ()=>{
   expect(() => kata.add('1,-2,-4')).toThrow('negatives not allowed: -2,-4');
 });
+
+test('bigger than 1000 ignored', ()=>{
+  expect(kata.add('1,2,1001')).toBe(3);
+});
