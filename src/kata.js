@@ -6,6 +6,7 @@ const add = (numbers) =>{
     return sum;
   }
   const values = getValues(numbers);
+  validateValues(values);
   for (const index in values) {
     if (Object.prototype.hasOwnProperty.call(values, index)) {
       sum += parseInt(values[index]);
@@ -14,11 +15,28 @@ const add = (numbers) =>{
   return sum;
 };
 
+
 const getValues = (inputString) => {
   const delimiter = getDelimiter(inputString);
   const delimitingRegExp = new RegExp('['+delimiter+'|\n]');
   const values = inputString.split(delimitingRegExp);
   return clean(values);
+};
+
+const validateValues = (values) => {
+  let valid = true;
+  const negatives = [];
+  for (const index in values) {
+    if (Object.prototype.hasOwnProperty.call(values, index)) {
+      if (parseInt(values[index])<0) {
+        valid = false;
+        negatives.push(parseInt(values[index]));
+      }
+    }
+  }
+  if (!valid) {
+    throw (new Error('negatives not allowed: '+negatives.join()));
+  }
 };
 
 const getDelimiter = (inputString) =>{

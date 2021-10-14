@@ -61,3 +61,11 @@ test('values of string "//;\n1;2;3" are 1,2,3', ()=>{
 test('values of string "1,2,3" are 1,2,3', ()=>{
   expect(kata.__getValues('1,2,3')).toStrictEqual(['1', '2', '3']);
 });
+
+test('negatives not allowed', ()=>{
+  expect(() => kata.add('1,-2')).toThrow('negatives not allowed: -2');
+});
+
+test('negatives not allowed, multiple negatives', ()=>{
+  expect(() => kata.add('1,-2,-4')).toThrow('negatives not allowed: -2,-4');
+});
