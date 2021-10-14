@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint --fix src/*.js test/*.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,8 @@
   },
   "homepage": "https://github.com/gabripasquazzo/string-calculator-kata#readme",
   "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-google": "^0.14.0",
     "jest": "^27.2.5"
   }
 }
