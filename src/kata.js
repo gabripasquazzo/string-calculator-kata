@@ -20,7 +20,7 @@ const getValues = (inputString) => {
   const delimiter = getDelimiter(inputString);
   const delimitingRegExp = new RegExp('['+delimiter+'|\n]');
   const values = inputString.split(delimitingRegExp);
-  return clean(values);
+  return values.filter((v) => v !== '' && v !=='//');
 };
 
 const validateValues = (values) => {
@@ -48,19 +48,6 @@ const getDelimiter = (inputString) =>{
   }
   return delimiter;
 };
-
-const clean = (values) => {
-  const cleanedValues = [];
-  for (const index in values) {
-    if (Object.prototype.hasOwnProperty.call(values, index)) {
-      if (values[index] !== '' && values[index] !== '//') {
-        cleanedValues.push(values[index]);
-      }
-    }
-  }
-  return cleanedValues;
-};
-
 
 exports.add = add;
 exports.__getDelimiter = getDelimiter;
