@@ -55,11 +55,11 @@ test('delimiter of string "xyz" is default comma', ()=>{
 });
 
 test('values of string "//;\n1;2;3" are 1,2,3', ()=>{
-  expect(kata.__getValues('//;\n1;2;3')).toStrictEqual(['1', '2', '3']);
+  expect(kata.__getValues('//;\n1;2;3')).toStrictEqual([1, 2, 3]);
 });
 
 test('values of string "1,2,3" are 1,2,3', ()=>{
-  expect(kata.__getValues('1,2,3')).toStrictEqual(['1', '2', '3']);
+  expect(kata.__getValues('1,2,3')).toStrictEqual([1, 2, 3]);
 });
 
 test('negatives not allowed', ()=>{

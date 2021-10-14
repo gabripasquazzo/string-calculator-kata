@@ -9,7 +9,7 @@ const add = (numbers) =>{
   validateValues(values);
   for (const index in values) {
     if (Object.prototype.hasOwnProperty.call(values, index)) {
-      sum += parseInt(values[index]);
+      sum += values[index];
     }
   }
   return sum;
@@ -20,7 +20,8 @@ const getValues = (inputString) => {
   const delimiter = getDelimiter(inputString);
   const delimitingRegExp = new RegExp('['+delimiter+'|\n]');
   const values = inputString.split(delimitingRegExp);
-  return values.filter((v) => v !== '' && v !=='//');
+  const cleaned = values.filter((v) => v !== '' && v !=='//');
+  return cleaned.map((value) => parseInt(value));
 };
 
 const validateValues = (values) => {
@@ -28,9 +29,9 @@ const validateValues = (values) => {
   const negatives = [];
   for (const index in values) {
     if (Object.prototype.hasOwnProperty.call(values, index)) {
-      if (parseInt(values[index])<0) {
+      if (values[index]<0) {
         valid = false;
-        negatives.push(parseInt(values[index]));
+        negatives.push(values[index]);
       }
     }
   }
