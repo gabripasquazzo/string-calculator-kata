@@ -73,3 +73,11 @@ test('negatives not allowed, multiple negatives', ()=>{
 test('bigger than 1000 ignored', ()=>{
   expect(kata.add('1,2,1001')).toBe(3);
 });
+
+test('delimiter of any length: "***"', ()=>{
+  expect(kata.add('//***\n1***2')).toBe(3);
+});
+
+test('delimiter of any length: "delimiter"', ()=>{
+  expect(kata.add('//delimiter\n1delimiter2')).toBe(3);
+});
