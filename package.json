@@ -1,0 +1,25 @@
+{
+  "name": "string-calculator-kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabripasquazzo/string-calculator-kata.git"
+  },
+  "author": "Gabriele Pasquazzo",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/gabripasquazzo/string-calculator-kata/issues"
+  },
+  "homepage": "https://github.com/gabripasquazzo/string-calculator-kata#readme",
+  "devDependencies": {
+    "jest": "^27.2.5"
+  }
+}
